@@ -1,0 +1,10 @@
+{
+  "name": "processing.yaksok",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "editor"
+  ],
+  "scripts": {},
+  "dependencies": {}
+}
