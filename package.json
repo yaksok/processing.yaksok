@@ -5,6 +5,5 @@
   "workspaces": [
     "editor"
   ],
-  "scripts": {},
-  "dependencies": {}
+  "scripts": {}
 }
