@@ -8,9 +8,18 @@
     return random(숫자);
 ***
 
-번역(자바스크립트) 도화지 크기는 (크기)
+번역(자바스크립트) 삼차원 도화지 설정 (정보)
 ***
-    createCanvas(크기.가로, 크기.세로);
+    window.가로 = 정보.가로;
+    window.세로 = 정보.세로;
+    createCanvas(정보.가로, 정보.세로, WEBGL);
+***
+
+번역(자바스크립트) 도화지 설정 (정보)
+***
+    window.가로 = 정보.가로;
+    window.세로 = 정보.세로;
+    createCanvas(정보.가로, 정보.세로);
 ***
 
 번역(자바스크립트) 배경색은 (색상)
@@ -52,35 +61,111 @@
 번역(자바스크립트) (벡터1)와/과 (벡터2) 벡터의 합
 ***
     const result = p5.Vector.add(
-        createVector(벡터1.왼쪽, 벡터1.위쪽),
-        createVector(벡터2.왼쪽, 벡터2.위쪽),
+        createVector(벡터1.왼쪽, 벡터1.위쪽, 벡터1.앞쪽),
+        createVector(벡터2.왼쪽, 벡터2.위쪽, 벡터2.앞쪽),
     );
     return {
         왼쪽: result.x,
         위쪽: result.y,
+        앞쪽: result.z,
     };
 ***
 
 번역(자바스크립트) (벡터1)와/과 (벡터2) 벡터의 차
 ***
     const result = p5.Vector.sub(
-        createVector(벡터1.왼쪽, 벡터1.위쪽),
-        createVector(벡터2.왼쪽, 벡터2.위쪽),
+        createVector(벡터1.왼쪽, 벡터1.위쪽, 벡터1.앞쪽),
+        createVector(벡터2.왼쪽, 벡터2.위쪽, 벡터2.앞쪽),
     );
     return {
         왼쪽: result.x,
         위쪽: result.y,
+        앞쪽: result.z,
     };
 ***
 
 번역(자바스크립트) (벡터) 벡터 곱하기 (스칼라)
 ***
     const result = p5.Vector.mult(
-        createVector(벡터.왼쪽, 벡터.위쪽),
+        createVector(벡터.왼쪽, 벡터.위쪽, 벡터.앞쪽),
         스칼라,
     );
     return {
         왼쪽: result.x,
         위쪽: result.y,
+        앞쪽: result.z,
     };
+***
+
+번역(자바스크립트) 주변광 (정보)
+***
+    ambientLight(color(정보.색상));
+***
+
+번역(자바스크립트) 방향광 (정보)
+***
+    const 벡터 = 정보.방향;
+    directionalLight(
+        color(정보.색상),
+        createVector(벡터.왼쪽, 벡터.위쪽, 벡터.앞쪽),
+    );
+***
+
+번역(자바스크립트) 점광 (정보)
+***
+    const 벡터 = 정보.위치;
+    pointLight(
+        color(정보.색상),
+        createVector(벡터.왼쪽, 벡터.위쪽, 벡터.앞쪽),
+    );
+***
+
+번역(자바스크립트) 주변광 재질 (정보)
+***
+    ambientMaterial(color(정보.색상));
+***
+
+번역(자바스크립트) 반사광 재질 (정보)
+***
+    specularMaterial(color(정보.색상));
+***
+
+번역(자바스크립트) 상자 (정보)
+***
+    box(정보.가로, 정보.세로, 정보.깊이, 정보.가로분할, 정보.세로분할);
+***
+
+번역(자바스크립트) 구 (정보)
+***
+    sphere(정보.반지름, 정보.가로방향, 정보.세로분할);
+***
+
+번역(자바스크립트) 들어가기
+***
+    push();
+***
+
+번역(자바스크립트) 나오기
+***
+    pop();
+***
+
+번역(자바스크립트) (벡터) 만큼 평행이동
+***
+    translate(createVector(벡터.왼쪽, 벡터.위쪽, 벡터.앞쪽));
+***
+
+번역(자바스크립트) (각도) 만큼 가로축 회전
+***
+    rotateX(각도);
+***
+
+번역(자바스크립트) (각도) 만큼 세로축 회전
+***
+    rotateY(각도);
+***
+
+번역(자바스크립트) (각도) 만큼 깊이축 회전
+***
+    rotateZ(각도);
 ***

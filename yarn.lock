@@ -4951,7 +4951,7 @@ __metadata:
     react-dom: ^16.12.0
     react-icons: ^3.9.0
     react-scripts: 3.3.0
-    yaksok: ^0.3.9
+    yaksok: ^0.3.10
   languageName: unknown
   linkType: soft
 
@@ -14184,9 +14184,9 @@ resolve@1.12.2:
   languageName: node
   linkType: hard
 
-"yaksok@npm:^0.3.9":
-  version: 0.3.9
-  resolution: "yaksok@npm:0.3.9"
+"yaksok@npm:^0.3.10":
+  version: 0.3.10
+  resolution: "yaksok@npm:0.3.10"
   dependencies:
     babel-polyfill: ^6.5.0
     babel-runtime: ^6.6.1
@@ -14197,7 +14197,7 @@ resolve@1.12.2:
     yargs: ^3.31.0
   bin:
     ysjs: ./bin/ysjs
-  checksum: acf266890bc5e02f1bf76cdfb3b03c031555efad67e11fe0e5fa718ae5f088e1eff36aed990cb668ea882f1e8f7f36345e5b614299523dbe77b7a66a554675c3
+  checksum: 15044c13abe11542fff8f1fec15a91edd7f49a580ede9bbae6ce7b641af3cda016e55107bcc416d3441a3cd81aa6b0073db73c3e5de6ec4df1601bfb9a520663
   languageName: node
   linkType: hard
 
