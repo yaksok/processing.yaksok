@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import raw from 'raw.macro';
 import { IoIosPlayCircle } from 'react-icons/io';
 import * as yaksok from 'yaksok';
@@ -6,10 +6,15 @@ import * as yaksok from 'yaksok';
 import * as styles from './App.module.css';
 
 const yaksokPrelude = raw('./processing.yaksok');
+const codes = {
+    drawing: raw('./examples/drawing.yaksok'),
+    multiple_lights: raw('./examples/multiple_lights.yaksok'),
+};
 
 function App() {
     const editorRef = useRef();
     const iframeRef = useRef();
+    const [selectedExample, setSelectedExample] = useState('drawing');
     useEffect(() => {
         const editor = editorRef.current = ace.edit('editor');
         editor.renderer.setScrollMargin(10, window.innerHeight);
@@ -23,6 +28,11 @@ function App() {
         const YaksokMode = ace.require('ace/mode/yaksok').Mode;
         editor.getSession().setMode(new YaksokMode());
     }, []);
+    useEffect(() => {
+        const editor = editorRef.current;
+        editor.setValue(codes[selectedExample]);
+        editor.execCommand('gotostart');
+    }, [selectedExample]);
     const onPlayButtonClick = () => {
         const editor = editorRef.current;
         const yaksokCode = editor.getValue();
@@ -33,15 +43,20 @@ function App() {
     };
     return <>
         <div className={styles.header}>
+            <select
+                className={styles.selectExample}
+                value={selectedExample}
+                onChange={e => setSelectedExample(e.target.value)}>
+                <option value="drawing">그리기</option>
+                <option value="multiple_lights">삼차원 조명</option>
+            </select>
             <button
                 className={styles.playButton}
                 onClick={onPlayButtonClick}>
                 <IoIosPlayCircle/>
             </button>
         </div>
-        <div id="editor" className={styles.editor}>
-            {initialCode}
-        </div>
+        <div id="editor" className={styles.editor}/>
         <iframe
             ref={iframeRef}
             className={styles.result}
@@ -51,9 +66,6 @@ function App() {
 }
 
 export default App;
-
-// const initialCode = raw('./examples/drawing.yaksok');
-const initialCode = raw('./examples/multiple_lights.yaksok');
 
 const callParser = new yaksok.parser.Parser(['START_CALL']);
 const callAsts = {
