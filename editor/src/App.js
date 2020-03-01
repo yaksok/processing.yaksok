@@ -9,6 +9,7 @@ const yaksokPrelude = raw('./processing.yaksok');
 const codes = {
     drawing: raw('./examples/drawing.yaksok'),
     chain: raw('./examples/chain.yaksok'),
+    spirograph: raw('./examples/spirograph.yaksok'),
     multiple_lights: raw('./examples/multiple_lights.yaksok'),
     sine_cosine_in_3d: raw('./examples/sine_cosine_in_3d.yaksok'),
     geometries: raw('./examples/geometries.yaksok'),
@@ -52,6 +53,7 @@ function App() {
                 onChange={e => setSelectedExample(e.target.value)}>
                 <option value="drawing">그리기</option>
                 <option value="chain">무게추</option>
+                <option value="spirograph">스피로그래프</option>
                 <option value="multiple_lights">삼차원 조명</option>
                 <option value="sine_cosine_in_3d">삼차원 사인 코사인</option>
                 <option value="geometries">삼차원 원시 도형들</option>
@@ -79,6 +81,8 @@ const callAsts = {
     draw: getCallAst('그리기'),
     mousePressed: getCallAst('마우스를 누르면'),
     mouseReleased: getCallAst('마우스를 놓으면'),
+    keyPressed: getCallAst('키보드를 누르면'),
+    keyReleased: getCallAst('키보드를 놓으면'),
 };
 
 function getCallAst(code) {
