@@ -4949,6 +4949,7 @@ __metadata:
     raw.macro: ^0.3.0
     react: ^16.12.0
     react-dom: ^16.12.0
+    react-github-corner: ^2.3.0
     react-icons: ^3.9.0
     react-scripts: 3.3.0
     yaksok: ^0.3.10
@@ -11270,6 +11271,15 @@ fsevents@^1.2.7:
   version: 6.0.4
   resolution: "react-error-overlay@npm:6.0.4"
   checksum: b7323d91f8e9fea6aee14c9c98e88ffc93787abbf921a2a5209e1f1d73d5cc5444d83c99e5459c3f7a235ac877d225a6d275927d3cafa9d0fba0cf2d4242d7eb
+  languageName: node
+  linkType: hard
+
+"react-github-corner@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "react-github-corner@npm:2.3.0"
+  peerDependencies:
+    react: "*"
+  checksum: 81626fa40d5fc119558fb8e26a0b5db52005ee274ad2249a151ec1c1bd8af3a3191fba4553f113bc4d3543d0219af257ad34e364b52400c739409595a4b8e7ab
   languageName: node
   linkType: hard
 

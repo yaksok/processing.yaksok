@@ -7,6 +7,7 @@ import React, {
 import querystring from 'querystring';
 import raw from 'raw.macro';
 import { IoIosPlayCircle } from 'react-icons/io';
+import GithubCorner from 'react-github-corner';
 import * as yaksok from 'yaksok';
 
 import * as styles from './App.module.css';
@@ -63,6 +64,11 @@ function App() {
         });
     };
     return <>
+        <GithubCorner
+            href="https://github.com/yaksok/processing.yaksok"
+            octoColor="#414242"
+            bannerColor="#fff"
+        />
         <div className={styles.header}>
             <select
                 className={styles.selectExample}
