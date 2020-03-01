@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {
+    useState,
+    useEffect,
+    useRef,
+    useCallback,
+} from 'react';
+import querystring from 'querystring';
 import raw from 'raw.macro';
 import { IoIosPlayCircle } from 'react-icons/io';
 import * as yaksok from 'yaksok';
@@ -16,9 +22,15 @@ const codes = {
 };
 
 function App() {
+    const [searchParams, setSearchParams] = useSearchParams(location);
+    const initialExample = searchParams.example || 'drawing';
     const editorRef = useRef();
     const iframeRef = useRef();
-    const [selectedExample, setSelectedExample] = useState('drawing');
+    const [selectedExample, setSelectedExample] = useState(initialExample);
+    const changeExample = example => {
+        setSelectedExample(example);
+        setSearchParams({ example });
+    };
     useEffect(() => {
         const editor = editorRef.current = ace.edit('editor');
         editor.renderer.setScrollMargin(10, window.innerHeight);
@@ -32,6 +44,11 @@ function App() {
         const YaksokMode = ace.require('ace/mode/yaksok').Mode;
         editor.getSession().setMode(new YaksokMode());
     }, []);
+    useEffect(() => {
+        if (!searchParams.example) return;
+        if (selectedExample === searchParams.example) return;
+        setSelectedExample(searchParams.example);
+    }, [searchParams.example]);
     useEffect(() => {
         const editor = editorRef.current;
         editor.setValue(codes[selectedExample]);
@@ -50,7 +67,7 @@ function App() {
             <select
                 className={styles.selectExample}
                 value={selectedExample}
-                onChange={e => setSelectedExample(e.target.value)}>
+                onChange={e => changeExample(e.target.value)}>
                 <option value="drawing">그리기</option>
                 <option value="chain">무게추</option>
                 <option value="spirograph">스피로그래프</option>
@@ -143,4 +160,27 @@ async function getIframeSrcDoc(yaksokCode) {
         jsCode,
         srcDoc,
     };
+}
+
+function useQueryString(location) {
+    const [_, fireRerender] = useState(++useQueryString.count);
+    const queryString = location.search.substr(1);
+    const setQueryString = useCallback(
+        queryString => history.pushState(history.state, '', queryString ? `?${queryString}` : ''),
+        [history],
+    );
+    useEffect(() => {
+        const onpopstate = () => fireRerender(++useQueryString.count);
+        window.addEventListener('popstate', onpopstate);
+        return () => window.removeEventListener(onpopstate);
+    }, []);
+    return [queryString, setQueryString];
+}
+useQueryString.count = 0;
+
+function useSearchParams(location) {
+    const [queryString, setQueryString] = useQueryString(location);
+    const searchParams = querystring.parse(queryString);
+    const setSearchParams = searchParams => setQueryString(querystring.stringify(searchParams));
+    return [searchParams, setSearchParams];
 }
