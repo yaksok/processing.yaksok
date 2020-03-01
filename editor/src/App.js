@@ -8,6 +8,7 @@ import * as styles from './App.module.css';
 const yaksokPrelude = raw('./processing.yaksok');
 const codes = {
     drawing: raw('./examples/drawing.yaksok'),
+    chain: raw('./examples/chain.yaksok'),
     multiple_lights: raw('./examples/multiple_lights.yaksok'),
     sine_cosine_in_3d: raw('./examples/sine_cosine_in_3d.yaksok'),
     geometries: raw('./examples/geometries.yaksok'),
@@ -50,6 +51,7 @@ function App() {
                 value={selectedExample}
                 onChange={e => setSelectedExample(e.target.value)}>
                 <option value="drawing">그리기</option>
+                <option value="chain">무게추</option>
                 <option value="multiple_lights">삼차원 조명</option>
                 <option value="sine_cosine_in_3d">삼차원 사인 코사인</option>
                 <option value="geometries">삼차원 원시 도형들</option>
