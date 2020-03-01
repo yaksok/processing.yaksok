@@ -1,7 +1,7 @@
 # 원전: https://editor.p5js.org/p5/sketches/3D:_sine_cosine_in_3D
 
 약속 준비하기
-    삼차원 도화지 설정 { 가로: 710, 세로: 400 }
+    삼차원 도화지 설정 { 가로: 720, 세로: 400 }
 
 약속 그리기
     배경색은 '#fafafa'
